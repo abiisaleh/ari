@@ -3,6 +3,20 @@
 <?php $this->section('content'); ?>
 <div class="col-12">
     <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Surat Masuk</h3>
+        </div>
+        <div class="card-body">
+            <table id="tabelSurat" class="table table-bordered table-hover"></table>
+        </div>
+    </div>
+</div>
+
+<div class="col-12">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Surat Disposisi</h3>
+        </div>
         <div class="card-body">
             <table id="tabel" class="table table-bordered table-hover"></table>
         </div>
@@ -54,20 +68,54 @@
 
 <?php $this->section('script'); ?>
 <script>
+    var dataTableSurat = $("#tabelSurat").DataTable({
+        "responsive": true,
+        "lengthChange": false,
+        "autoWidth": false,
+        "ajax": {
+            "url": '<?= base_url('api/suratMasuk/disposisi') ?>'
+        },
+        "columns": [{
+                "title": "No",
+                "data": "no"
+            },
+            {
+                "title": "Tgl Surat",
+                "data": "tgl_surat"
+            },
+            {
+                "title": "Tgl Terima",
+                "data": "tgl_terima"
+            },
+            {
+                "title": "Sifat",
+                "data": "sifat"
+            },
+            {
+                "title": "Perihal",
+                "data": "perihal"
+            },
+            {
+                "title": "Asal",
+                "data": "asal"
+            },
+            {
+                "title": "Aksi",
+                "data": null,
+                "render": function() {
+                    return `
+                        <?= view_cell('BtnActionCell', 'type=disposisi') ?>
+                    `
+                },
+                "width": "15%"
+            }
+        ],
+    })
+
     var dataTable = $("#tabel").DataTable({
         "responsive": true,
         "lengthChange": false,
         "autoWidth": false,
-        "dom": 'Bfrtip',
-        "buttons": [{
-                "text": "Tambah Data",
-                "className": "btn-primary btn-add",
-                "action": function() {
-                    return $('#modal-add').modal('show');
-                }
-            },
-            "print"
-        ],
         "ajax": {
             "url": window.location.href
         },
@@ -96,11 +144,10 @@
                 "data": null,
                 "render": function() {
                     return `
-                        <?= view_cell('BtnActionCell', 'type=delete') ?>
-                        <?= view_cell('BtnActionCell', 'type=edit') ?>
+                        <?= view_cell('BtnActionCell', 'type=detail') ?>
                     `
                 },
-                "width": "25%"
+                "width": "15%"
             }
         ],
     })
@@ -135,6 +182,13 @@
         $('#inputfk_surat').val(data.fk_surat);
 
         $('#modal-add').modal('show');
+    });
+
+    //Detail
+    $('#tabel').on('click', '.btn-detail', function() {
+        var data = dataTable.row($(this).parents('tr')).data();
+
+        window.location.href = "<?= base_url('disposisi') ?>/" + data.no;
     });
 </script>
 <?php $this->endsection(); ?>

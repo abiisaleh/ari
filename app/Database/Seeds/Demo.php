@@ -13,7 +13,7 @@ class Demo extends Seeder
         $authorize->addUserToGroup(2, 'admin');
 
         $data = [
-            "nip" => 376238128319,
+            "nip" => random_int(1000000, 10000000),
             "nama" => "Muahamd Abi Saleh",
             "jk" => "laki-laki",
             "telp" => "082238204776",

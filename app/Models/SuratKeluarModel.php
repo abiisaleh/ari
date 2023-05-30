@@ -8,11 +8,11 @@ class SuratKeluarModel extends Model
 {
     protected $DBGroup          = 'default';
     protected $table            = 'surat_keluar';
-    protected $primaryKey       = 'id';
-    protected $useAutoIncrement = true;
+    protected $primaryKey       = 'no';
+    protected $useAutoIncrement = false;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
-    protected $protectFields    = true;
+    protected $protectFields    = false;
     protected $allowedFields    = [];
 
     // Dates
@@ -38,16 +38,4 @@ class SuratKeluarModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
-
-    public function upload($file)
-    {
-        $file_path = FCPATH . 'surat';
-        $file_content = $this->response->getFile();
-
-        if (write_file($file_path, $file_content)) {
-            echo "File saved successfully.";
-        } else {
-            echo "Unable to save the file.";
-        }
-    }
 }

@@ -25,6 +25,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
     <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 
+    <!-- Select2 -->
+    <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="../../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
 </head>
@@ -100,6 +104,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="plugins/datatables-buttons/js/buttons.print.min.js"></script>
     <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
+    <!-- Select2 -->
+    <script src="../../plugins/select2/js/select2.full.min.js"></script>
+
     <!-- AdminLTE App -->
     <script src="dist/js/adminlte.min.js"></script>
 
@@ -110,9 +117,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
         // Mengiterasi setiap elemen navigasi
         $('nav a').each(function() {
             // Membandingkan URL saat ini dengan href dari elemen
-            if (currentUrl === this.href) {
+            if (currentUrl.includes(this.href)) {
                 // Menambahkan kelas 'active' jika cocok
                 $(this).addClass('active');
+            } else {
+                // $('#home').addClass('active');
             }
         });
 

@@ -52,7 +52,27 @@ class SuratKeluar extends ResourceController
      */
     public function create()
     {
-        //
+        $data = [
+            'no' => $this->request->getVar('no'),
+            'tgl_surat' => $this->request->getVar('tgl_surat'),
+            'sifat' => $this->request->getVar('sifat'),
+            'perihal' => $this->request->getVar('perihal'),
+            'tujuan' => $this->request->getVar('tujuan'),
+        ];
+
+        $file = $this->request->getFile('file_upload');
+
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            $newName = $file->getRandomName();
+            $data['scan'] = $newName;
+            $file->move(FCPATH . 'uploads', $newName);
+            echo 'File berhasil diunggah.';
+            $this->model->insert($data);
+        } else {
+            $data = $this->request->getVar();
+            $this->model->save($data);
+            echo 'Data berhasil diubah.';
+        }
     }
 
     /**

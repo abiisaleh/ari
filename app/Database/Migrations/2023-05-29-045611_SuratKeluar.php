@@ -11,10 +11,9 @@ class SuratKeluar extends Migration
         $field = [
             "no"            => ["type" => "VARCHAR", "constraint" => 16, "auto_increment" => false],
             "tgl_surat"     => ["type" => "DATE"],
-            "tgl_terima"    => ["type" => "DATE"],
             "sifat"         => ["type" => "VARCHAR", "constraint" => 13],
             "perihal"       => ["type" => "VARCHAR", "constraint" => 30],
-            "asal"          => ["type" => "VARCHAR", "constraint" => 30],
+            "tujuan"        => ["type" => "VARCHAR", "constraint" => 30],
             "scan"          => ["type" => "TEXT"],
         ];
         $this->forge->addPrimaryKey("no");

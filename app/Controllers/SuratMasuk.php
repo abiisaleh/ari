@@ -4,8 +4,6 @@ namespace App\Controllers;
 
 use CodeIgniter\RESTful\ResourceController;
 
-use function PHPUnit\Framework\isEmpty;
-
 class SuratMasuk extends ResourceController
 {
     protected $modelName = 'App\Models\SuratMasukModel';
@@ -123,5 +121,14 @@ class SuratMasuk extends ResourceController
         $this->model->delete($id);
 
         echo json_encode($response);
+    }
+
+    public function disposisi()
+    {
+        if ($this->request->isAJAX()) {
+            $data['data'] = $this->model->disposisi()->find();
+
+            return $this->response->setJSON($data);
+        }
     }
 }

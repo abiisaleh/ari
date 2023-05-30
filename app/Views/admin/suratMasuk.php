@@ -22,10 +22,22 @@
                 <div class="modal-body">
 
                     <?= view_cell('InputCell', 'name=no,text=No Surat,type=text') ?>
-                    <?= view_cell('InputCell', 'name=tgl_surat,text=Tgl Surat,type=date') ?>
-                    <?= view_cell('InputCell', 'name=tgl_terima,text=Tgl Terima,type=date') ?>
-                    <?= view_cell('InputCell', 'name=sifat,text=Sifat,type=text') ?>
-                    <?= view_cell('InputCell', 'name=perihal,text=Perihal,type=text') ?>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <?= view_cell('InputCell', 'name=tgl_surat,text=Tgl Surat,type=date') ?>
+                        </div>
+                        <div class="col-sm-6">
+                            <?= view_cell('InputCell', 'name=tgl_terima,text=Tgl Terima,type=date') ?>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <?= view_cell('InputCell', 'name=sifat,text=Sifat,type=text') ?>
+                        </div>
+                        <div class="col-sm-6">
+                            <?= view_cell('InputCell', 'name=perihal,text=Perihal,type=text') ?>
+                        </div>
+                    </div>
                     <?= view_cell('InputCell', 'name=asal,text=Asal,type=text') ?>
 
 
@@ -37,6 +49,44 @@
                                 <label class="custom-file-label" for="inputFile">Choose file</label>
                             </div>
                         </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<div class="modal fade" id="modal-disposisi">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Detail Surat</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="form-disposisi" method="POST" action="disposisi" enctype="multipart/form-data">
+                <div class="modal-body">
+
+                    <?= view_cell('InputCell', 'name=no,text=No Disposisi,type=text') ?>
+                    <?= view_cell('InputCell', 'name=tgl_penyelesaian,text=Tgl Penyelesaian,type=date') ?>
+                    <?= view_cell('InputCell', 'name=isi,text=Isi,type=text') ?>
+
+                    <?= view_cell('InputCell', 'name=fk_surat,text=No Surat Masuk,type=text') ?>
+
+                    <div class="form-group">
+                        <label for="inputfk_pegawai">Pegawai</label>
+                        <select class="form-control select2bs4" id="inputfk_pegawai" name="fk_pegawai">
+                            <option>-</option>
+                        </select>
                     </div>
 
                 </div>
@@ -171,5 +221,21 @@
 
         window.location.href = "<?= base_url('uploads') ?>/" + data.scan;
     });
+
+    //Disposisi Surat
+    $('#tabel').on('click', '.btn-disposisi', function() {
+        var data = dataTable.row($(this).parents('tr')).data();
+
+        $('#inputfk_surat').val(data.no);
+        $('#modal-disposisi').modal('show');
+    });
+
+    //Initialize Select2 Elements
+    $('#inputfk_pegawai').select2({
+        ajax: {
+            url: '/api/select2/pegawai',
+        },
+        theme: 'bootstrap4'
+    })
 </script>
 <?php $this->endsection(); ?>

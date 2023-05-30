@@ -165,7 +165,7 @@
     $('#tabel').on('click', '.btn-edit', function() {
         var data = dataTable.row($(this).parents('tr')).data();
 
-        $('#inputnip').val(data.nip).attr('disabled', true);
+        $('#inputnip').val(data.nip);
         $('#inputnama').val(data.nama);
         $('#inputgol').val(data.gol);
         $('#inputruang').val(data.ruang);

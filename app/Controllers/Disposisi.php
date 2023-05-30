@@ -38,7 +38,10 @@ class Disposisi extends ResourceController
      */
     public function show($id = null)
     {
-        //
+        $data['data'] = $this->model->PegawaiSurat()->find($id);
+        $data['title'] = 'Detail Disposisi';
+
+        return view('admin/disposisi-detail', $data);
     }
 
     /**
@@ -58,7 +61,9 @@ class Disposisi extends ResourceController
      */
     public function create()
     {
-        //
+        $data = $this->request->getVar();
+        $this->model->save($data);
+        return redirect()->to('disposisi');
     }
 
     /**

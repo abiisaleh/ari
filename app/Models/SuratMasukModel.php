@@ -38,4 +38,14 @@ class SuratMasukModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function disposisi()
+    {
+        $fk_surat = $this->db->table('disposisi')->select('fk_surat')->get()->getResultArray();
+        // $value = array_values($fk_surat);
+
+        $result = array_column($fk_surat, 'fk_surat');
+
+        return $this->whereNotIn('no', $result);
+    }
 }

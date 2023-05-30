@@ -18,15 +18,21 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form enctype="multipart/form-data">
+            <form id="form-add" enctype="multipart/form-data">
                 <div class="modal-body">
 
                     <?= view_cell('InputCell', 'name=no,text=No Surat,type=text') ?>
                     <?= view_cell('InputCell', 'name=tgl_surat,text=Tgl Surat,type=date') ?>
-                    <?= view_cell('InputCell', 'name=tgl_terima,text=Tgl Terima,type=date') ?>
-                    <?= view_cell('InputCell', 'name=sifat,text=Sifat,type=text') ?>
-                    <?= view_cell('InputCell', 'name=perihal,text=Perihal,type=text') ?>
-                    <?= view_cell('InputCell', 'name=asal,text=Asal,type=text') ?>
+
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <?= view_cell('InputCell', 'name=sifat,text=Sifat,type=text') ?>
+                        </div>
+                        <div class="col-sm-6">
+                            <?= view_cell('InputCell', 'name=perihal,text=Perihal,type=text') ?>
+                        </div>
+                    </div>
+                    <?= view_cell('InputCell', 'name=tujuan,text=Tujuan,type=text') ?>
 
                     <div class="form-group" id="file">
                         <label for="inputFile">File Surat</label>
@@ -80,10 +86,6 @@
                 "data": "tgl_surat"
             },
             {
-                "title": "Tgl Terima",
-                "data": "tgl_terima"
-            },
-            {
                 "title": "Sifat",
                 "data": "sifat"
             },
@@ -92,8 +94,8 @@
                 "data": "perihal"
             },
             {
-                "title": "Asal",
-                "data": "asal"
+                "title": "Tujuan",
+                "data": "tujuan"
             },
             {
                 "title": "Aksi",
@@ -136,7 +138,6 @@
         var data = dataTable.row($(this).parents('tr')).data()
         var id = data.no
 
-
         if (confirm('Anda yakin ingin menghapus data ini?')) {
             $.ajax({
                 url: window.location.href + '/' + id,
@@ -154,10 +155,9 @@
 
         $('#inputno').val(data.no);
         $('#inputtgl_surat').val(data.tgl_surat);
-        $('#inputtgl_terima').val(data.tgl_terima);
         $('#inputsifat').val(data.sifat);
         $('#inputperihal').val(data.perihal);
-        $('#inputasal').val(data.asal);
+        $('#inputtujuan').val(data.tujuan);
 
         $('#modal-add').modal('show');
     });

@@ -85,4 +85,23 @@ class Pegawai extends ResourceController
     {
         $this->model->delete($id);
     }
+
+    public function select2()
+    {
+        $query = $this->request->getVar('q');
+
+        if ($query) {
+            $array = $this->model->search($query)->findAll();
+        } else {
+            $array = $this->model->findAll();
+        }
+
+        $newArray = array_map(function ($item) {
+            return ['text' => $item['nama'], 'id' => $item['nip']];
+        }, $array);
+
+        $data['results'] = $newArray;
+
+        return $this->response->setJSON($data);
+    }
 }

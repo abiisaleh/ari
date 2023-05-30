@@ -8,11 +8,11 @@ class DisposisiModel extends Model
 {
     protected $DBGroup          = 'default';
     protected $table            = 'disposisi';
-    protected $primaryKey       = 'id';
-    protected $useAutoIncrement = true;
+    protected $primaryKey       = 'no';
+    protected $useAutoIncrement = false;
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
-    protected $protectFields    = true;
+    protected $protectFields    = false;
     protected $allowedFields    = [];
 
     // Dates
@@ -38,4 +38,10 @@ class DisposisiModel extends Model
     protected $afterFind      = [];
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
+
+    public function PegawaiSurat()
+    {
+        return $this->join('pegawai', 'fk_pegawai = nip')
+            ->join('surat_masuk', 'fk_surat = surat_masuk.no');
+    }
 }
