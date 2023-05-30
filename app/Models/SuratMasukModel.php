@@ -41,11 +41,7 @@ class SuratMasukModel extends Model
 
     public function disposisi()
     {
-        $fk_surat = $this->db->table('disposisi')->select('fk_surat')->get()->getResultArray();
-        // $value = array_values($fk_surat);
-
-        $result = array_column($fk_surat, 'fk_surat');
-
-        return $this->whereNotIn('no', $result);
+        return $this->join('disposisi', 'surat_masuk.no = fk_surat', 'LEFT')
+            ->where('fk_surat', null)->select('surat_masuk.*');
     }
 }
