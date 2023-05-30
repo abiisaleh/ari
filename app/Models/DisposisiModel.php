@@ -39,9 +39,16 @@ class DisposisiModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
-    public function PegawaiSurat()
+    public function getNama()
     {
         return $this->join('pegawai', 'fk_pegawai = nip')
-            ->join('surat_masuk', 'fk_surat = surat_masuk.no');
+            ->select('disposisi.*, nama');
+    }
+
+    public function PegawaiSurat()
+    {
+        return $this->join('pegawai', 'fk_pegawai = nip', 'LEFT')
+            ->join('surat_masuk', 'fk_surat = surat_masuk.no', 'LEFT')
+            ->select('disposisi.*, pegawai.*, surat_masuk.scan as scan_surat, surat_masuk.no as no_surat');
     }
 }

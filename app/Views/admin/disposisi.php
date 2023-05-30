@@ -23,30 +23,36 @@
     </div>
 </div>
 
-<div class="modal fade" id="modal-add">
+<div class="modal fade" id="modal-disposisi">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Detail Disposisi</h4>
+                <h4 class="modal-title">Detail Surat</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form enctype="multipart/form-data">
+            <form id="form-disposisi" enctype="multipart/form-data">
                 <div class="modal-body">
 
-                    <?= view_cell('InputCell', 'name=no,text=No Surat,type=text') ?>
-                    <?= view_cell('InputCell', 'name=tgl_surat,text=Tgl Surat,type=date') ?>
-                    <?= view_cell('InputCell', 'name=tgl_terima,text=Tgl Terima,type=date') ?>
-                    <?= view_cell('InputCell', 'name=sifat,text=Sifat,type=text') ?>
-                    <?= view_cell('InputCell', 'name=perihal,text=Perihal,type=text') ?>
-                    <?= view_cell('InputCell', 'name=asal,text=Asal,type=text') ?>
+                    <?= view_cell('InputCell', 'name=no,text=No Disposisi,type=text') ?>
+                    <?= view_cell('InputCell', 'name=tgl_penyelesaian,text=Tgl Penyelesaian,type=date') ?>
+                    <?= view_cell('InputCell', 'name=isi,text=Isi,type=text') ?>
+
+                    <?= view_cell('InputCell', 'name=fk_surat,text=No Surat Masuk,type=text') ?>
 
                     <div class="form-group">
+                        <label for="inputfk_pegawai">Pegawai</label>
+                        <select class="form-control select2bs4" id="inputfk_pegawai" name="fk_pegawai">
+                            <option>-</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" id="file">
                         <label for="inputFile">File Surat</label>
                         <div class="input-group">
                             <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="inputFile">
+                                <input type="file" name="file_upload" class="custom-file-input" id="inputFile">
                                 <label class="custom-file-label" for="inputFile">Choose file</label>
                             </div>
                         </div>
@@ -133,7 +139,7 @@
             },
             {
                 "title": "Pegawai",
-                "data": "fk_pegawai"
+                "data": "nama"
             },
             {
                 "title": "Surat",
@@ -154,6 +160,25 @@
 
     //style btn-add
     $('.btn-add').removeClass('btn-secondary')
+
+    //Tambah Data
+    $('#form-disposisi').submit(function(e) {
+        e.preventDefault()
+
+        var formData = new FormData($(this)[0]); // Membuat objek FormData dari formulir
+
+        $.ajax({
+            url: window.location.href,
+            type: 'POST',
+            data: formData,
+            processData: false, // Tidak memproses data sebelum mengirimkannya
+            contentType: false, // Menggunakan tipe konten default untuk FormData
+            success: function() {
+                $('#modal-disposisi').modal('hide')
+                dataTable.ajax.reload()
+            }
+        })
+    })
 
     //Hapus Data
     $('#tabel tbody').on('click', '.btn-delete', function() {
@@ -190,5 +215,22 @@
 
         window.location.href = "<?= base_url('disposisi') ?>/" + data.no;
     });
+
+    //Disposisi Surat
+    $('#tabelSurat').on('click', '.btn-disposisi', function() {
+        var data = dataTableSurat.row($(this).parents('tr')).data();
+
+        $('#inputfk_surat').val(data.no);
+        $('#modal-disposisi').modal('show');
+    });
+
+    //Initialize Select2 Elements
+    $('#inputfk_pegawai').select2({
+        ajax: {
+            url: '/api/select2/pegawai',
+        },
+        theme: 'bootstrap4',
+        dropdownParent: $('#modal-disposisi'),
+    })
 </script>
 <?php $this->endsection(); ?>

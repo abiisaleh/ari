@@ -47,9 +47,9 @@
 
                     <strong><i class="far fa-file-alt mr-1"></i> Lapiran</strong>
 
-                    <p class="text-muted">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.
-                    </p>
+                    <div class="d-block py-2">
+                        <a class="btn btn-sm btn-danger" href="uploads/<?= $data['scan'] ?>"><i class="fas fa-paperclip"></i> File</a>
+                    </div>
                 </div>
                 <!-- /.card-body -->
             </div>

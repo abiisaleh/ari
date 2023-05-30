@@ -8,13 +8,13 @@ class Demo extends Seeder
 {
     public function run()
     {
-        $authorize = $auth = service('authorization');
-        $authorize->addUserToGroup(1, 'master');
-        $authorize->addUserToGroup(2, 'admin');
+        // $authorize = $auth = service('authorization');
+        // $authorize->addUserToGroup(1, 'master');
+        // $authorize->addUserToGroup(2, 'admin');
 
         $data = [
             "nip" => random_int(1000000, 10000000),
-            "nama" => "Muahamd Abi Saleh",
+            "nama" => "Ari Salamony",
             "jk" => "laki-laki",
             "telp" => "082238204776",
             "alamat" => "abepura",
