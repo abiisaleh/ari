@@ -33,7 +33,7 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <strong><i class="fas fa-book mr-1"></i> Tanggal Penyelesaian</strong>
+                    <strong><i class="fas fa-calendar mr-1"></i> Tanggal Penyelesaian</strong>
 
                     <p class="text-muted"><?= $data['tgl_penyelesaian'] ?></p>
 
@@ -64,7 +64,7 @@
             <h3 class="card-title">Surat</h3>
         </div>
         <div class="card-body">
-
+            <iframe src="uploads/<?= $data['scan_surat'] ?>" width="100%" height="600px"></iframe>
         </div>
     </div>
 </div>

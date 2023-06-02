@@ -6,6 +6,7 @@ class Home extends BaseController
 {
     public function index()
     {
+        helper('auth');
         $data['title'] = 'Dashboard';
         $data['Pegawai'] = model('PegawaiModel')->countAllResults();
         $data['SuratMasuk'] = model('SuratMasukModel')->countAllResults();

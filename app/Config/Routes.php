@@ -32,10 +32,10 @@ $routes->set404Override();
 $routes->get('/', 'Home::index');
 $routes->get('dashboard', 'Home::index');
 
-$routes->resource('pegawai');
-$routes->resource('suratMasuk');
+$routes->resource('pegawai', ['filter' => 'role:admin,master']);
+$routes->resource('suratMasuk', ['filter' => 'role:admin,master']);
 $routes->resource('suratKeluar');
-$routes->resource('disposisi');
+$routes->resource('disposisi', ['filter' => 'role:tu,master']);
 
 $routes->get('api/suratMasuk/disposisi', 'SuratMasuk::disposisi');
 

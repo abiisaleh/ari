@@ -30,7 +30,7 @@ class Auth extends \Myth\Auth\Config\Auth
      *
      * @var string
      */
-    public $landingRoute = '/';
+    public $landingRoute = '/#';
 
     /**
      * --------------------------------------------------------------------
@@ -185,7 +185,8 @@ class Auth extends \Myth\Auth\Config\Auth
      *
      * @var string|null Name of the ActivatorInterface class
      */
-    public $requireActivation = 'Myth\Auth\Authentication\Activators\EmailActivator';
+    // public $requireActivation = 'Myth\Auth\Authentication\Activators\EmailActivator';
+    public $requireActivation = null;
 
     /**
      * --------------------------------------------------------------------

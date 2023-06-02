@@ -11,6 +11,7 @@ class Demo extends Seeder
         $authorize = $auth = service('authorization');
         $authorize->addUserToGroup(1, 'master');
         $authorize->addUserToGroup(2, 'admin');
+        $authorize->addUserToGroup(3, 'tu');
 
         $data = [
             "nip" => random_int(1000000, 10000000),

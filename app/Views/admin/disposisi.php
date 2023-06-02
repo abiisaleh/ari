@@ -1,16 +1,18 @@
 <?php $this->extend('layout'); ?>
 
 <?php $this->section('content'); ?>
-<div class="col-12">
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title">Surat Masuk</h3>
-        </div>
-        <div class="card-body">
-            <table id="tabelSurat" class="table table-bordered table-hover"></table>
+<?php if (in_groups('master')) : ?>
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h3 class="card-title">Surat Masuk</h3>
+            </div>
+            <div class="card-body">
+                <table id="tabelSurat" class="table table-bordered table-hover"></table>
+            </div>
         </div>
     </div>
-</div>
+<?php endif; ?>
 
 <div class="col-12">
     <div class="card">
@@ -74,49 +76,59 @@
 
 <?php $this->section('script'); ?>
 <script>
-    var dataTableSurat = $("#tabelSurat").DataTable({
-        "responsive": true,
-        "lengthChange": false,
-        "autoWidth": false,
-        "ajax": {
-            "url": '<?= base_url('api/suratMasuk/disposisi') ?>'
-        },
-        "columns": [{
-                "title": "No",
-                "data": "no"
+    <?php if (in_groups('master')) : ?>
+        var dataTableSurat = $("#tabelSurat").DataTable({
+            "responsive": true,
+            "lengthChange": false,
+            "autoWidth": false,
+            "ajax": {
+                "url": '<?= base_url('api/suratMasuk/disposisi') ?>'
             },
-            {
-                "title": "Tgl Surat",
-                "data": "tgl_surat"
-            },
-            {
-                "title": "Tgl Terima",
-                "data": "tgl_terima"
-            },
-            {
-                "title": "Sifat",
-                "data": "sifat"
-            },
-            {
-                "title": "Perihal",
-                "data": "perihal"
-            },
-            {
-                "title": "Asal",
-                "data": "asal"
-            },
-            {
-                "title": "Aksi",
-                "data": null,
-                "render": function() {
-                    return `
+            "columns": [{
+                    "title": "No",
+                    "data": "no"
+                },
+                {
+                    "title": "Tgl Surat",
+                    "data": "tgl_surat"
+                },
+                {
+                    "title": "Tgl Terima",
+                    "data": "tgl_terima"
+                },
+                {
+                    "title": "Sifat",
+                    "data": "sifat"
+                },
+                {
+                    "title": "Perihal",
+                    "data": "perihal"
+                },
+                {
+                    "title": "Asal",
+                    "data": "asal"
+                },
+                {
+                    "title": "Aksi",
+                    "data": null,
+                    "render": function() {
+                        return `
                         <?= view_cell('BtnActionCell', 'type=disposisi') ?>
                     `
-                },
-                "width": "15%"
-            }
-        ],
-    })
+                    },
+                    "width": "15%"
+                }
+            ],
+        })
+
+        //Disposisi Surat
+        $('#tabelSurat').on('click', '.btn-disposisi', function() {
+            var data = dataTableSurat.row($(this).parents('tr')).data();
+
+            $('#inputfk_surat').val(data.no);
+            $('#modal-disposisi').modal('show');
+        });
+    <?php endif ?>
 
     var dataTable = $("#tabel").DataTable({
         "responsive": true,
@@ -214,14 +226,6 @@
         var data = dataTable.row($(this).parents('tr')).data();
 
         window.location.href = "<?= base_url('disposisi') ?>/" + data.no;
-    });
-
-    //Disposisi Surat
-    $('#tabelSurat').on('click', '.btn-disposisi', function() {
-        var data = dataTableSurat.row($(this).parents('tr')).data();
-
-        $('#inputfk_surat').val(data.no);
-        $('#modal-disposisi').modal('show');
     });
 
     //Initialize Select2 Elements

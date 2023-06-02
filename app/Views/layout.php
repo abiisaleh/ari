@@ -8,9 +8,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title><?= $title ?> | Jayapura</title>
+    <title><?= $title ?> | SI Surat</title>
 
     <base href="<?= base_url() ?>">
+
+    <link rel="icon" href="dist/img/logo-dprd.svg" sizes="32x32" />
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -26,8 +28,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
 
     <!-- Select2 -->
-    <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
-    <link rel="stylesheet" href="../../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <link rel="stylesheet" href="plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 
     <!-- Theme style -->
     <link rel="stylesheet" href="dist/css/adminlte.min.css">
@@ -75,7 +77,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 Sistem Informasi Manajemen Surat
             </div>
             <!-- Default to the left -->
-            <strong>Copyright &copy; 2023 <a href="#">DPRD Kota Jayapura</a>.</strong> All rights reserved.
+            <strong>Copyright &copy; 2023 <a href="https://dprd.kotajayapura.id">DPRD Kota Jayapura</a>.</strong> All rights reserved.
         </footer>
     </div>
     <!-- ./wrapper -->
@@ -105,26 +107,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
 
     <!-- Select2 -->
-    <script src="../../plugins/select2/js/select2.full.min.js"></script>
+    <script src="plugins/select2/js/select2.full.min.js"></script>
 
     <!-- AdminLTE App -->
     <script src="dist/js/adminlte.min.js"></script>
 
     <script>
-        // Mendapatkan URL saat ini
-        var currentUrl = window.location.href;
-
-        // Mengiterasi setiap elemen navigasi
-        $('nav a').each(function() {
-            // Membandingkan URL saat ini dengan href dari elemen
-            if (currentUrl.includes(this.href)) {
-                // Menambahkan kelas 'active' jika cocok
-                $(this).addClass('active');
-            } else {
-                // $('#home').addClass('active');
-            }
-        });
-
         bsCustomFileInput.init();
     </script>
 
