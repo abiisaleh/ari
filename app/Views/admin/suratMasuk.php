@@ -72,15 +72,16 @@
         "lengthChange": false,
         "autoWidth": false,
         "dom": 'Bfrtip',
-        "buttons": [{
-                "text": "Tambah Data",
-                "className": "btn-primary btn-add",
-                "action": function() {
-                    $('#form-add')[0].reset();
-                    $('#modal-add').modal('show');
-                }
-            },
-            "print"
+        "buttons": [
+            <?php if (in_groups('admin')) : ?> {
+                    "text": "Tambah Data",
+                    "className": "btn-primary btn-add",
+                    "action": function() {
+                        $('#form-add')[0].reset();
+                        $('#modal-add').modal('show');
+                    }
+                },
+            <?php endif ?> "print"
         ],
         "ajax": {
             "url": window.location.href
@@ -115,7 +116,7 @@
                 "render": function() {
                     return `
                         <?= view_cell('BtnActionCell', 'type=detail') ?>
-                        <?= view_cell('BtnActionCell', 'type=delete') ?>
+                        <?= (in_groups('admin')) ? view_cell('BtnActionCell', 'type=delete') : '' ?>
                     `
                 },
                 "width": "25%"

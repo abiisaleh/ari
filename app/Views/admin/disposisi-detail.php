@@ -48,7 +48,7 @@
                     <strong><i class="far fa-file-alt mr-1"></i> Lapiran</strong>
 
                     <div class="d-block py-2">
-                        <a class="btn btn-sm btn-danger" href="uploads/<?= $data['scan'] ?>"><i class="fas fa-paperclip"></i> File</a>
+                        <a class="btn btn-sm btn-danger" href="disposisi-print/<?= $data['no'] ?>"><i class="fas fa-paperclip"></i> File</a>
                     </div>
                 </div>
                 <!-- /.card-body -->

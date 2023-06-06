@@ -49,6 +49,6 @@ class DisposisiModel extends Model
     {
         return $this->join('pegawai', 'fk_pegawai = nip', 'LEFT')
             ->join('surat_masuk', 'fk_surat = surat_masuk.no', 'LEFT')
-            ->select('disposisi.*, pegawai.*, surat_masuk.scan as scan_surat, surat_masuk.no as no_surat');
+            ->select('pegawai.*, surat_masuk.* , surat_masuk.scan as scan_surat, disposisi.*');
     }
 }

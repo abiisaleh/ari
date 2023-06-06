@@ -88,15 +88,16 @@
         "lengthChange": false,
         "autoWidth": false,
         "dom": 'Bfrtip',
-        "buttons": [{
-                "text": "Tambah Data",
-                "className": "btn-primary btn-add",
-                "action": function() {
-                    $('#form-add')[0].reset();
-                    $('#modal-add').modal('show');
-                }
-            },
-            "print"
+        "buttons": [
+            <?php if (in_groups('admin')) : ?> {
+                    "text": "Tambah Data",
+                    "className": "btn-primary btn-add",
+                    "action": function() {
+                        $('#form-add')[0].reset();
+                        $('#modal-add').modal('show');
+                    }
+                },
+            <?php endif ?> "print"
         ],
         "ajax": {
             "url": window.location.href
@@ -113,17 +114,18 @@
                 "title": "Jenis Kelamin",
                 "data": "jk"
             },
-            {
-                "title": "Aksi",
-                "data": null,
-                "render": function() {
-                    return `
+            <?php if (in_groups('admin')) : ?> {
+                    "title": "Aksi",
+                    "data": null,
+                    "render": function() {
+                        return `
                         <?= view_cell('BtnActionCell', 'type=delete') ?>
                         <?= view_cell('BtnActionCell', 'type=edit') ?>
                     `
-                },
-                "width": "20%"
-            }
+                    },
+                    "width": "20%"
+                }
+            <?php endif ?>
         ],
     })
 

@@ -113,4 +113,10 @@ class Disposisi extends ResourceController
     {
         $this->model->delete($id);
     }
+
+    public function print($id)
+    {
+        $data['dispo'] = $this->model->PegawaiSurat()->find($id);
+        return view('admin/disposisi-print', $data);
+    }
 }

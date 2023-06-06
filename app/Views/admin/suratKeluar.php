@@ -67,7 +67,7 @@
         "dom": 'Bfrtip',
 
         "buttons": [
-            <?php if (!in_groups('admin')) : ?> {
+            <?php if (in_groups('tu')) : ?> {
                     "text": "Tambah Data",
                     "className": "btn-primary btn-add",
                     "action": function() {
@@ -105,7 +105,7 @@
                 "render": function() {
                     return `
                         <?= view_cell('BtnActionCell', 'type=detail') ?>
-                        <?= (!in_groups('admin')) ? view_cell('BtnActionCell', 'type=delete') : '' ?>
+                        <?= (in_groups('tu')) ? view_cell('BtnActionCell', 'type=delete') : '' ?>
                     `
                 },
                 "width": "25%"
