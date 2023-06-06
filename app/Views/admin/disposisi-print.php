@@ -48,12 +48,35 @@ scratch. This page gets rid of all links and provides the needed markup only.
         .borderless-right {
             border-right: none;
         }
+
+        hr {
+            border: 2px solid black;
+        }
+
+        @media print {
+
+            /* Menghilangkan judul halaman */
+            @page {
+                size: auto;
+                margin-top: 0mm;
+                margin-bottom: 0mm;
+            }
+
+            /* Menghilangkan URL */
+            @page :left {
+                margin-right: 0mm;
+            }
+
+            @page :right {
+                margin-left: 0mm;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <img class="fixed-top ml-5 mt-2" src="dist/img/logo-dprd.svg" width="100px">
+    <div class="container mt-5">
+        <img class="fixed-top ml-5 mt-5" src="dist/img/logo-dprd.svg" width="100px">
         <div class="text-center">
             <h1 class="text-bold">
                 Dewan Perwakilan Rakyat Daerah <br>
@@ -111,6 +134,12 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
     <script src="plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            window.print();
+        });
+    </script>
 </body>
 
 </html>
