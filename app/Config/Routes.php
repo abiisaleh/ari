@@ -32,7 +32,6 @@ $routes->set404Override();
 $routes->get('/', 'Home::index');
 $routes->get('dashboard', 'Home::index');
 
-$routes->resource('pegawai', ['filter' => 'role:admin,master']);
 $routes->resource('suratMasuk', ['filter' => 'role:admin,master']);
 $routes->resource('suratKeluar');
 $routes->resource('disposisi', ['filter' => 'role:tu,master']);
@@ -40,8 +39,6 @@ $routes->resource('disposisi', ['filter' => 'role:tu,master']);
 $routes->get('disposisi-print/(:num)', 'Disposisi::print/$1', ['filter' => 'role:tu,master']);
 
 $routes->get('api/suratMasuk/disposisi', 'SuratMasuk::disposisi');
-
-$routes->get('api/select2/pegawai', 'Pegawai::select2');
 
 /*
  * --------------------------------------------------------------------

@@ -8,7 +8,6 @@ class Home extends BaseController
     {
         helper('auth');
         $data['title'] = 'Dashboard';
-        $data['Pegawai'] = model('PegawaiModel')->countAllResults();
         $data['SuratMasuk'] = model('SuratMasukModel')->countAllResults();
         $data['SuratKeluar'] = model('SuratKeluarModel')->countAllResults();
         $data['Disposisi'] = model('DisposisiModel')->countAllResults();

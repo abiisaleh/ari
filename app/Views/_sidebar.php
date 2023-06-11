@@ -38,14 +38,6 @@ $uri1 = $uri[0] ?? null;
                 </li>
                 <?php if (!in_groups('tu')) : ?>
                     <li class="nav-item">
-                        <a href="pegawai" class="nav-link <?= ($uri1 == 'pegawai') ? 'active' : '' ?>">
-                            <i class="nav-icon fas fa-user"></i>
-                            <p>
-                                Data Pegawai
-                            </p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
                         <a href="suratMasuk" class="nav-link <?= ($uri1 == 'suratMasuk') ? 'active' : '' ?>">
                             <i class="nav-icon fas fa-envelope"></i>
                             <p>

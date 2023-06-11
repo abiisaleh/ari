@@ -22,7 +22,7 @@ class Disposisi extends ResourceController
     public function index()
     {
         if ($this->request->isAJAX()) {
-            $data['data'] = $this->model->getNama()->findAll();
+            $data['data'] = $this->model->findAll();
 
             return $this->response->setJSON($data);
         } else {
@@ -38,7 +38,7 @@ class Disposisi extends ResourceController
      */
     public function show($id = null)
     {
-        $data['data'] = $this->model->PegawaiSurat()->find($id);
+        $data['data'] = $this->model->surat()->find($id);
         $data['title'] = 'Detail Disposisi';
 
         return view('admin/disposisi-detail', $data);
@@ -116,7 +116,7 @@ class Disposisi extends ResourceController
 
     public function print($id)
     {
-        $data['dispo'] = $this->model->PegawaiSurat()->find($id);
+        $data['dispo'] = $this->model->surat()->find($id);
         return view('admin/disposisi-print', $data);
     }
 }

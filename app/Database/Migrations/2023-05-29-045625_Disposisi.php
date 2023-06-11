@@ -12,8 +12,7 @@ class Disposisi extends Migration
             "no"                => ["type" => "VARCHAR", "constraint" => 16, "auto_increment" => false],
             "tgl_penyelesaian"  => ["type" => "DATE"],
             "isi"               => ["type" => "VARCHAR", "constraint" => 30],
-            "scan"              => ["type" => "TEXT"],
-            "fk_pegawai"        => ["type" => "VARCHAR", "constraint" => 16],
+            "tujuan"            => ["type" => "VARCHAR", "constraint" => 50],
             "fk_surat"          => ["type" => "VARCHAR", "constraint" => 16],
         ];
         $this->forge->addPrimaryKey("no");

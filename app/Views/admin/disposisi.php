@@ -41,24 +41,8 @@
                     <?= view_cell('InputCell', 'name=tgl_penyelesaian,text=Tgl Penyelesaian,type=date') ?>
                     <?= view_cell('InputCell', 'name=isi,text=Isi,type=text') ?>
 
+                    <?= view_cell('InputCell', 'name=tujuan,text=Tujuan,type=text') ?>
                     <?= view_cell('InputCell', 'name=fk_surat,text=No Surat Masuk,type=text') ?>
-
-                    <div class="form-group">
-                        <label for="inputfk_pegawai">Pegawai</label>
-                        <select class="form-control select2bs4" id="inputfk_pegawai" name="fk_pegawai">
-                            <option>-</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group" id="file">
-                        <label for="inputFile">File Surat</label>
-                        <div class="input-group">
-                            <div class="custom-file">
-                                <input type="file" name="file_upload" class="custom-file-input" id="inputFile">
-                                <label class="custom-file-label" for="inputFile">Choose file</label>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
                 <div class="modal-footer justify-content-between">
@@ -150,8 +134,8 @@
                 "data": "isi"
             },
             {
-                "title": "Pegawai",
-                "data": "nama"
+                "title": "Tujuan",
+                "data": "tujuan"
             },
             {
                 "title": "Surat",
