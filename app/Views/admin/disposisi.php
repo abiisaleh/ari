@@ -41,7 +41,7 @@
                     <?= view_cell('InputCell', 'name=tgl_penyelesaian,text=Tgl Penyelesaian,type=date') ?>
                     <?= view_cell('InputCell', 'name=isi,text=Isi,type=text') ?>
 
-                    <?= view_cell('InputCell', 'name=tujuan,text=Tujuan,type=text') ?>
+                    <?= view_cell('InputCell', 'name=diteruskan,text=Diteruskan ke,type=text') ?>
                     <?= view_cell('InputCell', 'name=fk_surat,text=No Surat Masuk,type=text') ?>
 
                 </div>
@@ -134,8 +134,8 @@
                 "data": "isi"
             },
             {
-                "title": "Tujuan",
-                "data": "tujuan"
+                "title": "Diteruskan ke",
+                "data": "diteruskan"
             },
             {
                 "title": "Surat",
