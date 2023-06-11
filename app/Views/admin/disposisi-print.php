@@ -121,7 +121,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                         <td class="borderless-right">Isi Disposisi</td>
                         <td class="borderless-left">: <?= $dispo['isi'] ?></td>
                         <td class="borderless-right">Diteruskan Kepada</td>
-                        <td class="borderless-left">: <?= $dispo['tujuan'] ?></td>
+                        <td class="borderless-left">: <?= $dispo['diteruskan'] ?></td>
                     </tr>
                 </tfoot>
             </table>
