@@ -44,4 +44,9 @@ class SuratMasukModel extends Model
         return $this->join('disposisi', 'surat_masuk.no = fk_surat', 'LEFT')
             ->where('fk_surat', null)->select('surat_masuk.*');
     }
+
+    public function belum_dibaca()
+    {
+        return $this->where('read', 0);
+    }
 }
