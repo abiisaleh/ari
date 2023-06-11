@@ -34,7 +34,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="form-disposisi" enctype="multipart/form-data">
+            <form id="form-disposisi">
                 <div class="modal-body">
 
                     <?= view_cell('InputCell', 'name=no,text=No Disposisi,type=text') ?>
@@ -144,10 +144,17 @@
             {
                 "title": "Aksi",
                 "data": null,
-                "render": function() {
-                    return `
-                        <?= view_cell('BtnActionCell', 'type=detail') ?>
-                    `
+                "render": function(data) {
+
+                    <?php if (in_groups('tu')) : ?>
+                        if (data.read == 0) {
+                            return `<?= view_cell('BtnActionCell', 'type=detail') ?>`
+                        } else {
+                            return `<?= view_cell('BtnActionCell', 'type=read') ?>`
+                        }
+                    <?php else : ?>
+                        return `<?= view_cell('BtnActionCell', 'type=detail') ?>`
+                    <?php endif; ?>
                 },
                 "width": "15%"
             }
@@ -161,17 +168,16 @@
     $('#form-disposisi').submit(function(e) {
         e.preventDefault()
 
-        var formData = new FormData($(this)[0]); // Membuat objek FormData dari formulir
+        var formData = $(this).serialize();
 
         $.ajax({
             url: window.location.href,
             type: 'POST',
             data: formData,
-            processData: false, // Tidak memproses data sebelum mengirimkannya
-            contentType: false, // Menggunakan tipe konten default untuk FormData
             success: function() {
                 $('#modal-disposisi').modal('hide')
                 dataTable.ajax.reload()
+                dataTableSurat.ajax.reload()
             }
         })
     })
@@ -208,6 +214,18 @@
     //Detail
     $('#tabel').on('click', '.btn-detail', function() {
         var data = dataTable.row($(this).parents('tr')).data();
+
+        //jika pimpinan yang buka ubah status menjadi dibaca 
+        <?php if (in_groups('tu')) : ?>
+            //kalau belum dibaca jalankan ajax
+            if (data.read == 0) {
+                //jalankan ajax
+                $.ajax({
+                    url: window.location.href + '/' + data.no,
+                    type: 'PUT',
+                })
+            }
+        <?php endif; ?>
 
         window.location.href = "<?= base_url('disposisi') ?>/" + data.no;
     });

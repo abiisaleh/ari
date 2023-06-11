@@ -93,7 +93,12 @@ class SuratMasuk extends ResourceController
      */
     public function update($id = null)
     {
-        //
+        $data = [
+            'no' => $id,
+            'read' => 1,
+        ];
+
+        $this->model->save($data);
     }
 
     /**

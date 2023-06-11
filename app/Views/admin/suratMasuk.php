@@ -113,11 +113,19 @@
             {
                 "title": "Aksi",
                 "data": null,
-                "render": function() {
-                    return `
+                "render": function(data) {
+                    <?php if (in_groups('master')) : ?>
+                        if (data.read == 0) {
+                            return `<?= view_cell('BtnActionCell', 'type=detail') ?>`
+                        } else {
+                            return `<?= view_cell('BtnActionCell', 'type=read') ?>`
+                        }
+                    <?php else : ?>
+                        return `
                         <?= view_cell('BtnActionCell', 'type=detail') ?>
-                        <?= (in_groups('admin')) ? view_cell('BtnActionCell', 'type=delete') : '' ?>
-                    `
+                        <?= (in_groups('admin')) ? view_cell('BtnActionCell', 'type=delete') : '' ?>`
+                    <?php endif; ?>
+
                 },
                 "width": "25%"
             }
@@ -181,6 +189,18 @@
     //Detail Data
     $('#tabel').on('click', '.btn-detail', function() {
         var data = dataTable.row($(this).parents('tr')).data();
+
+        //jika pimpinan yang buka ubah status menjadi dibaca 
+        <?php if (in_groups('master')) : ?>
+            //kalau belum dibaca jalankan ajax
+            if (data.read == 0) {
+                //jalankan ajax
+                $.ajax({
+                    url: window.location.href + '/' + data.no,
+                    type: 'PUT',
+                })
+            }
+        <?php endif; ?>
 
         window.location.href = "<?= base_url('uploads') ?>/" + data.scan;
     });

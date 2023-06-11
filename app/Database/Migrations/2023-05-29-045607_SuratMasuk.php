@@ -16,6 +16,7 @@ class SuratMasuk extends Migration
             "perihal"       => ["type" => "VARCHAR", "constraint" => 30],
             "asal"          => ["type" => "VARCHAR", "constraint" => 30],
             "scan"          => ["type" => "TEXT"],
+            "read"          => ["type" => "BOOLEAN", "default" => false],
         ];
         $this->forge->addPrimaryKey("no");
         $this->forge->addField($field);

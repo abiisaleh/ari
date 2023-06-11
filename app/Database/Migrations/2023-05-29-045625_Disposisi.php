@@ -14,6 +14,7 @@ class Disposisi extends Migration
             "isi"               => ["type" => "VARCHAR", "constraint" => 30],
             "tujuan"            => ["type" => "VARCHAR", "constraint" => 50],
             "fk_surat"          => ["type" => "VARCHAR", "constraint" => 16],
+            "read"              => ["type" => "BOOLEAN", "default" => false],
         ];
         $this->forge->addPrimaryKey("no");
         $this->forge->addField($field);
