@@ -1,7 +1,7 @@
 <?php $this->extend('layout'); ?>
 
 <?php $this->section('content'); ?>
-<div class="col-6">
+<div class="col-12 col-sm-4">
     <!-- small box -->
     <div class="small-box bg-info">
         <div class="inner">
@@ -16,7 +16,7 @@
     </div>
 </div>
 <!-- ./col -->
-<div class="col-6">
+<div class="col-12 col-sm-4">
     <!-- small box -->
     <div class="small-box bg-success">
         <div class="inner">
@@ -31,7 +31,7 @@
     </div>
 </div>
 <!-- ./col -->
-<div class="col-6">
+<div class="col-12 col-sm-4">
     <!-- small box -->
     <div class="small-box bg-warning">
         <div class="inner">
